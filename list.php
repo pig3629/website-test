@@ -133,7 +133,7 @@
         var temp_tel =''; //檢測電話的按鈕狀態
         var temp_em ='';  //檢測信箱的按鈕狀態
         var temp_data = false
-        myArray = <?php echo json_encode($json_array); ?>; //資料庫抓到資料後，傳到document
+        var myArray = <?php echo json_encode($json_array); ?>; //資料庫抓到資料後，傳到document
             function callback() {
                 var serch = document.getElementById("serch");
                 var dataHtml = []; 
@@ -206,26 +206,29 @@
                         }        /* for(var idxKey in data[i]) {印<td>內容} */
                          dataHtml.push("<td><input type=button value=編輯 name=edit"+i+"  id=edit"+i+" onclick=edit("+i+","+data[i]['id']+")>");
                     }           /* for( i in data) {印回來比數的內容} */ 
-
-                    $("#show_list").html(dataHtml.join('')); //.html(htmlString)Set the HTML contents of each element in the set of matched elements.
+                    $("#show_list").html(dataHtml.join(''));    
+                    if($("#serch").val()!=''){  //加在callback 會有問題
+                        $("#back").attr("onclick","replace()"); //讓資料返回上一頁
+                    }else{
+                        $("#back").attr("onclick","javascript:location.href='index.php'"); //讓資料返回上一頁
+                    }   
                      //console.log(typeof(dataHtml)); //Object // 是因為 dataHtml 是 array，才需要join成string,也可以用map
                 })  /*  .done(function) 完成 */
+                
             };
             /* 搜尋按下enter會呼叫call back() */
             $("#serch").keypress(function() {
                 if (event.which == 13){
-                    callback();
-                    if($("#serch").val()!='') $("#back").attr("onclick","replace()") //讓資料返回上一頁
+                    callback(); 
                 }
             });
 
             $('#serch_submit').click(function(){
                 callback();
-                $("#back").attr("onclick","replace()") //資料返回上頁
             });
             /* 重整 */
             function replace(){ 
-                location.href="list.php"
+                location.href="list.php";
             }
             //$('#serch_submit').click(callback);
             /* 全選 */
@@ -300,11 +303,11 @@
                         data: { type: 'edit_check', edit_check : arr_out}
                     }).done(function(data){
                         if(data==1){
-                            alert("修改失敗")
+                            alert("修改失敗");
                             location.replace("list.php");
                         }else{
-                            alert("修改成功")
-                            myArray = data //覆蓋舊的sql資料
+                            alert("修改成功");
+                            myArray = data; //覆蓋舊的sql資料
                         }
                     })
                 }
@@ -361,15 +364,15 @@
                 var phoneRule = /^(0\d+)-(\d{4,8})?$/;  
                 switch(true){
                     case phone_val =='':
-                        return temp_tel =0
+                        return temp_tel =0;
                         break;
                     case (phoneRule.test(phone_val)?false:true): //檢測電話，合格傳false
                         span_empty("#phone",id,'電話格式錯誤!');
-                        return temp_tel = 1 
+                        return temp_tel = 1 ;
                         break;
                     default : 
                         $("#phone"+id).next().remove();
-                        return temp_tel =0
+                        return temp_tel =0;
                     break;
                 }   
             }
@@ -380,7 +383,7 @@
                     return false,temp_na=1;
                 }else{
                      $("#username"+id).next().remove();
-                     return temp_na=0
+                     return temp_na=0;
                 }
             }
             

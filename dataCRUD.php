@@ -86,9 +86,13 @@
         //驗證信箱
         if(!empty($ans_diff['email'])){
             $patternEmail = "/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/";
-            if(preg_match($patternEmail,$ans_diff['email'])==false){
-              echo 1;
-              exit;
+            if(preg_match($patternEmail,$ans_diff['email'])){
+                $email=$ans_diff['email'];
+                $sql = "SELECT * FROM users WHERE email=?"; 
+                $rs = db_query($sql,array($email));
+                echo db_num_rows($rs); // 檢查有沒有重複
+            }else{
+              echo 1;exit;
             }
         }
         //驗證電話
