@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="Scripts/jquery-3.0.0.min.js"></script>
+    <title>jQuery Ajax GET</title>
+</head>
+<body>
+    <h1>Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replace</div>
+    <script>
+        $.post('urlpost.php',{ url:'amazon.com/gp/aw'}, function(data)
+        {
+            $('#info').html(data)
+        })
+    </script>
+</body>
+</html>

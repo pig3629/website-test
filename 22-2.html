@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="Scripts/jquery-3.0.0.min.js"></script>
+    <title>Geolocation Example</title>
+</head>
+<body>
+    <div id="status"></div>
+    <div id="map"></div>
+    <script>
+        if(typeof navigator.geolocation == 'undefined')
+            alert("Geolocation not supported.")
+        else
+            navigator.geolocation.getCurrentPosition(granted,denied)
+        function granted(position)
+        {
+            document.getElementById('status').innerHTML = 'Permission Granted'
+            document.getElementById('map').style.border = '1px solider black'
+            document.getElementById('map').style.width = '640px'
+            document.getElementById('map').style.height = '320px'
+            var lat = position.coords.latitude
+            var long = position.coords.longitude
+            var gmap = document.getElementById('map')
+            var gopts = 
+            {
+                center: new google.maps.LatLng(lat,long),
+                zoom: 9, mapTypeId: google.maps.MapTypeId.ROADMAP //沒插入MAP api KEY 所以會失敗
+            }
+            var map = new google.maps.Map(gmap,gopts)
+        }
+        function denied(error)
+        {
+            var message
+            switch (error.code) {
+                case 1: 
+                    message = 'Permission Denied';
+                    break;
+                case 2: 
+                    message = 'Position Unavailable';
+                    break;
+                case 3: 
+                    message = 'Operation Timed Out';
+                    break;
+                case 4: 
+                    message = 'Unknoen Error';
+                    break;
+            }
+            document.getElementById('status').innerHTML = message
+        }
+    </script>
+</body>
+</html>

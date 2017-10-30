@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="Scripts/jquery-3.0.0.min.js"></script>
+    <title>DOM Traverisal Siblings</title>
+</head>
+<body>
+    <ul>
+        <li class="new">Item1</li>
+        <li id="two" class="new">Item2</li>
+        <li >Item3</li>
+        <li class="new">Item4</li>
+        <li class="new">Item5</li>
+        <li >Item6</li>
+        <li >Item7</li>
+    </ul>
+    <script>
+        $('#two').siblings('.new').css('font-weight','bold');
+    </script>
+</body>
+</html>

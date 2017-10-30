@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>九宫格布局</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript" src="Scripts/jquery-3.0.0.min.js"></script>
+</head>
+
+<body>
+    <html>
+
+    <head>
+        <style type="text/css">
+            /** 重置浏览器默认标签样式 */
+
+            body,
+            ul,
+            li {
+                margin: 0;
+                padding: 0;
+            }
+
+             .xttblog {
+                width: 1200px;
+                height: 170px;
+                margin-top: 50px;
+                margin-left: auto;
+                margin-right: auto;
+            } 
+
+            .box {
+                margin-left: 5px;
+                margin-top: 5px;
+                list-style-type: none;
+            }
+
+            .box:after {
+                content: ".";
+                display: block;
+                line-height: 0;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+                overflow: hidden;
+            }
+
+            .box li {
+                float: left;
+                line-height: 230px;
+            }
+
+            .box li a,
+            .box li a:visited {
+                display: block;
+                border: 5px solid #ccc;
+                width: 380px;
+                height: 230px;
+                text-align: center;
+                margin-left: -5px;
+                margin-top: -5px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .box li a:hover {
+                border-color: #f00;
+                z-index: 2;
+            } 
+        </style>
+    </head>
+
+    <body>
+        <button onclick="getRandomArray()">Try it</button>
+        <p id="demo"></p>
+        <div class="xttblog">
+            <ul class="box">
+                <li>
+                    <a href="#" title="1" onclick="changePng(1)">
+                        <img id='change1' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="2" onclick="changePng(2)">
+                        <img id='change2'  />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="3" onclick="changePng(3)">
+                        <img id='change3' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="4" onclick="changePng(4)">
+                        <img id='change4' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="5" onclick="changePng(5)">
+                        <img id='change5' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="6" onclick="changePng(6)">
+                        <img id='change6' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="7" onclick="changePng(7)">
+                        <img id='change7' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="8" onclick="changePng(8)">
+                        <img id='change8' />
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="9" onclick="changePng(9)">
+                        <img id='change9' />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <script>
+        var x = document.getElementById("demo")
+        function getRandom() {	//取得 minNum(最小值) ~ maxNum(最大值) 之間的亂數
+                return Math.floor(Math.random() * 9) + 1;
+        }   
+        
+        function getRandomArray() {	//隨機產生不重覆的n個數字
+            var rdmArray = [];	   	//儲存產生的陣列
+            var n= $('img').length; 
+            while(n > rdmArray.length)
+            for (var i = 0; i < n ; i++) {
+                var rdm = 0;		//暫存的亂數
+                do {
+                    var exist = false;			//此亂數是否已存在
+                    rdm = getRandom();	//取得亂數
+                    if (rdmArray.indexOf(rdm) != -1) exist = true;
+                } while (exist);	//產生沒出現過的亂數時離開迴圈
+                rdmArray[i] = rdm;
+            }   
+            console.log(rdmArray)
+            return rdmArray;
+        }
+         //$("#change" + i).attr("src", "c1.png");
+            //$("#change" + x).attr("src", "c1.png");
+        function changePng(id){
+            $("#change" + id).attr("src", "c1.png");
+        }
+        </script>
+    </body>
+</html>
