@@ -33,10 +33,16 @@
                 drawShape()
             }
             function drawShape() {
+                var my_gradient = elem.createLinearGradient(0, 0, 170, 0);
+                my_gradient.addColorStop(0, "#b73a9e");
+                my_gradient.addColorStop(0.5, "#673ab7");
+                my_gradient.addColorStop(1, "#03a9f4");
                 elem.clearRect(0, 0, w, h);
-                elem.fillStyle = "black"
-                elem.fillRect(0, 0, w, h);
                 elem.fillStyle = "white"
+                elem.fillRect(0, 0, w, h);
+                elem.fillStyle = my_gradient
+                elem.font = "60px Georgia";
+                elem.fillText("hello",10,50)
                 a = Math.floor(Math.random() * 255);
                 b = Math.floor(Math.random() * 255);
                 c = Math.floor(Math.random() * 255);
