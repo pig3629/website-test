@@ -44,9 +44,6 @@
                 elem.fillStyle = my_gradient
                 elem.font = "60px Georgia";
                 elem.fillText("hello ",10,50)
-                a = Math.floor(Math.random() * 255);
-                b = Math.floor(Math.random() * 255);
-                c = Math.floor(Math.random() * 255);
                 for(var i=0;i<position.length;i++){
                     elem.beginPath();
                     elem.arc(position[i].x, position[i].y, position[i].size, 0, 2 * Math.PI, false);
